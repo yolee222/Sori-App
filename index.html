@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sori: free voice typing for Mac and Windows</title>
+<meta name="description" content="Hold a key, talk, let go. Sori types your words into any app. Free, unlimited, and your voice never leaves your computer.">
+<meta property="og:title" content="Sori: free voice typing for Mac and Windows">
+<meta property="og:description" content="Unlimited free voice typing. No weekly word limit. Your audio never leaves your computer.">
+<meta property="og:image" content="icon.png">
+<link rel="icon" href="favicon.png">
+<style>
+  :root {
+    --bg: #fbfaf7; --fg: #1d1d21; --muted: #5d5d66; --card: #ffffff; --line: #e7e4dc;
+    --yellow: #ffd11a; --dark: #242429; --accent: #8a6a00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #141417; --fg: #f1f0ec; --muted: #a9a8b0; --card: #1d1d22; --line: #2e2e35; --accent: #ffd11a; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  a { color: var(--accent); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+  header { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; color: var(--fg); text-decoration: none; }
+  .brand img { width: 34px; height: 34px; }
+  nav a { color: var(--muted); text-decoration: none; margin-left: 18px; font-size: 15px; }
+  nav a:hover { color: var(--fg); }
+
+  .hero { text-align: center; padding: 56px 0 40px; }
+  .hero img { width: 112px; height: 112px; }
+  h1 { font-size: clamp(36px, 7vw, 60px); line-height: 1.05; margin: 18px 0 14px; letter-spacing: -0.02em; }
+  .sub { font-size: clamp(18px, 2.6vw, 21px); color: var(--muted); max-width: 640px; margin: 0 auto 30px; }
+  .buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-flex; flex-direction: column; align-items: center; min-width: 230px; padding: 14px 22px; border-radius: 14px; text-decoration: none; font-weight: 700; font-size: 18px; border: 2px solid var(--dark); }
+  .btn small { font-weight: 500; font-size: 13px; opacity: 0.8; }
+  .btn.primary { background: var(--yellow); color: #1d1d21; border-color: var(--yellow); }
+  .btn.secondary { background: transparent; color: var(--fg); border-color: var(--line); }
+  .btn:hover { transform: translateY(-1px); }
+  .free { margin-top: 16px; color: var(--muted); font-size: 15px; }
+
+  .pill-demo { margin: 44px auto 0; display: inline-flex; align-items: center; gap: 10px; background: var(--yellow); color: #1d1d21; font-weight: 700; padding: 10px 22px; border-radius: 999px; box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #d12; animation: pulse 1.2s infinite; }
+  @keyframes pulse { 50% { opacity: .25; } }
+  @media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
+
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: clamp(26px, 4vw, 34px); margin: 0 0 22px; letter-spacing: -0.01em; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+  .card h3 { margin: 0 0 6px; font-size: 19px; }
+  .card p { margin: 0; color: var(--muted); }
+  .num { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--yellow); color: #1d1d21; font-weight: 800; margin-bottom: 10px; }
+  kbd { font: 600 14px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--card); border: 1px solid var(--line); border-bottom-width: 3px; border-radius: 6px; padding: 3px 7px; }
+
+  table { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  th { font-size: 14px; color: var(--muted); font-weight: 600; }
+  td.yes { color: #1a8a3a; font-weight: 700; }
+  @media (prefers-color-scheme: dark) { td.yes { color: #5ad07d; } }
+
+  details { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px 18px; margin-bottom: 12px; }
+  summary { cursor: pointer; font-weight: 700; }
+  details p, details ol { color: var(--muted); margin: 10px 0 0; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  @media (max-width: 560px) { nav a.hide-sm { display: none; } .btn { width: 100%; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="#"><img src="icon.png" alt="">Sori</a>
+    <nav>
+      <a href="#how" class="hide-sm">How it works</a>
+      <a href="#faq" class="hide-sm">FAQ</a>
+      <a href="#download">Download</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <img src="icon.png" alt="Sori app icon">
+    <h1>Talk. It types.</h1>
+    <p class="sub">Hold a key, say what you want to write, let go. Sori types it into whatever app you're in: email, Slack, docs, or your AI chat. Clean, punctuated, without the "ums".</p>
+    <div class="buttons" id="download">
+      <a class="btn primary" href="https://github.com/yolee222/sori-download/releases/latest/download/Sori-mac.dmg">Download for Mac<small>Apple Silicon (M1 or newer), macOS 12+</small></a>
+      <a class="btn secondary" href="https://github.com/yolee222/sori-download/releases/latest/download/Sori-Windows-Setup.exe">Download for Windows<small>Windows 10 or 11, 64-bit</small></a>
+    </div>
+    <p class="free">Free. Unlimited. No account. No weekly word limit.</p>
+    <div class="pill-demo" aria-hidden="true"><span class="dot"></span> Listening</div>
+  </div>
+
+  <section id="how">
+    <h2>How it works</h2>
+    <div class="grid">
+      <div class="card"><div class="num">1</div><h3>Hold the key</h3><p>Hold <kbd>right Option</kbd> on Mac or <kbd>right Alt</kbd> on Windows. Prefer tapping? Switch to tap-to-start in the menu.</p></div>
+      <div class="card"><div class="num">2</div><h3>Just talk</h3><p>Speak naturally. A small yellow pill (Mac) or a red tray icon (Windows) shows Sori is listening.</p></div>
+      <div class="card"><div class="num">3</div><h3>Let go, it types</h3><p>Your words appear where your cursor is, with fillers and stutters removed. Your clipboard is put back afterwards.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why Sori</h2>
+    <div class="grid">
+      <div class="card"><h3>🔒 Private by design</h3><p>Speech-to-text runs on your own computer. Your voice is never uploaded anywhere.</p></div>
+      <div class="card"><h3>♾️ Truly unlimited</h3><p>Because it runs on your machine, there's no cost per word, so there's no word cap. Talk as much as you like.</p></div>
+      <div class="card"><h3>✍️ Clean writing</h3><p>Free cleanup removes "um", "uh" and repeated words. Optional AI cleanup fixes grammar and tidies rambling sentences.</p></div>
+      <div class="card"><h3>⚡ Works everywhere</h3><p>Any app with a text box: Gmail, Slack, Notion, Word, ChatGPT, Claude, Cursor, and more.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it compares</h2>
+    <table>
+      <tr><th></th><th>Sori (free)</th><th>Typical cloud dictation apps</th></tr>
+      <tr><td>Words per week</td><td class="yes">Unlimited</td><td>Often capped on free plans</td></tr>
+      <tr><td>Where your voice goes</td><td class="yes">Stays on your computer</td><td>Sent to their servers</td></tr>
+      <tr><td>Account needed</td><td class="yes">No</td><td>Yes</td></tr>
+      <tr><td>Works offline</td><td class="yes">Yes</td><td>Usually not</td></tr>
+    </table>
+  </section>
+
+  <section id="faq">
+    <h2>Install help and FAQ</h2>
+    <details open>
+      <summary>Mac: "Sori can't be opened" or "can't check the developer"</summary>
+      <ol>
+        <li>Open <b>Sori-mac.dmg</b> and drag Sori into <b>Applications</b>.</li>
+        <li>Open Sori. When macOS warns you, click <b>Done</b>.</li>
+        <li>Go to <b>System Settings &gt; Privacy &amp; Security</b>, scroll down, and click <b>Open Anyway</b> next to Sori.</li>
+        <li>Allow the <b>Microphone</b>. Then turn Sori on under <b>Accessibility</b> and <b>Input Monitoring</b> in the same Privacy &amp; Security page, and reopen Sori.</li>
+      </ol>
+      <p>The warning appears because Sori is an independent app that isn't registered with Apple's paid developer program yet.</p>
+    </details>
+    <details>
+      <summary>Windows: "Windows protected your PC"</summary>
+      <p>Click <b>More info</b>, then <b>Run anyway</b>. This shows up for new apps from small developers. Sori installs for your user only and doesn't need an administrator password. After installing, look for the microphone icon at the bottom-right of the taskbar (click <b>^</b> if it's hidden).</p>
+    </details>
+    <details>
+      <summary>Why is the first start slow?</summary>
+      <p>The first time, Sori downloads its speech model (about 500 MB). After that it works offline and starts quickly.</p>
+    </details>
+    <details>
+      <summary>What languages does it support?</summary>
+      <p>English for now.</p>
+    </details>
+    <details>
+      <summary>What's the optional AI cleanup?</summary>
+      <p>Basic cleanup is always on and free. For smarter grammar fixes you can run a free local AI model with <a href="https://ollama.com">Ollama</a>, or paste your own Claude API key in Sori's menu. With the Claude option, only the text (never your audio) is sent to Anthropic, under your own account.</p>
+    </details>
+    <details>
+      <summary>How do I uninstall?</summary>
+      <p>Mac: drag Sori from Applications to the Trash. Windows: Settings &gt; Apps &gt; Sori &gt; Uninstall.</p>
+    </details>
+  </section>
+
+  <footer>
+    <span>Sori by KJ_AIS</span>
+    <span><a href="https://github.com/yolee222/sori-download/releases">All versions</a></span>
+  </footer>
+</div>
+</body>
+</html>
