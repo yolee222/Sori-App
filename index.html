@@ -64,6 +64,19 @@
   summary { cursor: pointer; font-weight: 700; }
   details p, details ol { color: var(--muted); margin: 10px 0 0; }
 
+  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin-top: 8px; }
+  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; }
+  .plan.featured { border: 2px solid var(--yellow); }
+  .plan h3 { margin: 0; font-size: 19px; }
+  .price { font-size: 36px; font-weight: 800; margin: 8px 0 2px; letter-spacing: -0.02em; }
+  .price small { font-size: 16px; font-weight: 500; color: var(--muted); }
+  .plan p { color: var(--muted); margin: 0 0 18px; flex: 1; }
+  .tag { display: inline-block; align-self: flex-start; background: var(--yellow); color: #1d1d21; font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 999px; margin-bottom: 10px; }
+  .buy { display: block; text-align: center; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: 700; background: var(--yellow); color: #1d1d21; }
+  .buy.soon { background: var(--line); color: var(--muted); pointer-events: none; }
+  ul.ticks { list-style: none; padding: 0; margin: 0 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 8px 24px; }
+  ul.ticks li::before { content: "✓ "; color: #1a8a3a; font-weight: 800; }
+  .langs { color: var(--muted); }
   footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
   @media (max-width: 560px) { nav a.hide-sm { display: none; } .btn { width: 100%; } }
 </style>
@@ -74,6 +87,7 @@
     <a class="brand" href="#"><img src="icon.png" alt="">Sori</a>
     <nav>
       <a href="#how" class="hide-sm">How it works</a>
+      <a href="#pro" class="hide-sm">Pro</a>
       <a href="#faq" class="hide-sm">FAQ</a>
       <a href="#download">Download</a>
     </nav>
@@ -87,7 +101,7 @@
       <a class="btn primary" href="https://github.com/yolee222/sori-download/releases/latest/download/Sori-mac.dmg">Download for Mac<small>Apple Silicon (M1 or newer), macOS 12+</small></a>
       <a class="btn secondary" href="https://github.com/yolee222/sori-download/releases/latest/download/Sori-Windows-Setup.exe">Download for Windows<small>Windows 10 or 11, 64-bit</small></a>
     </div>
-    <p class="free">Free. Unlimited. No account. No weekly word limit.</p>
+    <p class="free">Free. Unlimited. No account. No weekly word limit. 20 languages.</p>
     <div class="pill-demo" aria-hidden="true"><span class="dot"></span> Listening</div>
   </div>
 
@@ -107,6 +121,7 @@
       <div class="card"><h3>♾️ Truly unlimited</h3><p>Because it runs on your machine, there's no cost per word, so there's no word cap. Talk as much as you like.</p></div>
       <div class="card"><h3>✍️ Clean writing</h3><p>Free cleanup removes "um", "uh" and repeated words. Optional AI cleanup fixes grammar and tidies rambling sentences.</p></div>
       <div class="card"><h3>⚡ Works everywhere</h3><p>Any app with a text box: Gmail, Slack, Notion, Word, ChatGPT, Claude, Cursor, and more.</p></div>
+      <div class="card"><h3>🌍 20 languages</h3><p>The world's most spoken languages, from Spanish and Hindi to Chinese and Arabic, plus auto-detect for about 100 more.</p></div>
     </div>
   </section>
 
@@ -119,6 +134,39 @@
       <tr><td>Account needed</td><td class="yes">No</td><td>Yes</td></tr>
       <tr><td>Works offline</td><td class="yes">Yes</td><td>Usually not</td></tr>
     </table>
+  </section>
+
+  <section id="pro">
+    <h2>Sori Pro</h2>
+    <p class="sub" style="margin:0 0 22px;text-align:left;max-width:none">Dictation stays free and unlimited, forever. Pro is for when you want Sori to do more than type.</p>
+    <ul class="ticks">
+      <li><b>Command mode:</b> highlight text, hold <kbd>Shift</kbd> + your Sori key, and say "make this professional", "make it shorter" or "translate to Spanish".</li>
+      <li><b>Writing styles:</b> casual, professional, concise, or a clear AI prompt.</li>
+      <li><b>Style per app:</b> casual in Slack, professional in Mail and Outlook, prompt-ready in ChatGPT and Cursor, all automatic.</li>
+      <li><b>Private:</b> uses Sori's built-in AI on your computer, or Claude with your own key.</li>
+    </ul>
+    <div class="plans">
+      <div class="plan">
+        <h3>Monthly</h3>
+        <div class="price">$9.99<small> / month</small></div>
+        <p>Cancel any time.</p>
+        <a class="buy" data-plan="monthly" href="#">Get Pro monthly</a>
+      </div>
+      <div class="plan">
+        <h3>Yearly</h3>
+        <div class="price">$99<small> / year</small></div>
+        <p>Two months free compared with monthly.</p>
+        <a class="buy" data-plan="yearly" href="#">Get Pro yearly</a>
+      </div>
+      <div class="plan featured">
+        <span class="tag">First 200 buyers</span>
+        <h3>Founder lifetime</h3>
+        <div class="price">$149<small> once</small></div>
+        <p>Pay once, Pro forever. Only for the first 200 people.</p>
+        <a class="buy" data-plan="lifetime" href="#">Get lifetime Pro</a>
+      </div>
+    </div>
+    <p class="free" style="text-align:left">After you buy, your licence key arrives by email. In Sori's menu choose <b>Enter Pro licence key...</b> and paste it. Payments are handled by Lemon Squeezy.</p>
   </section>
 
   <section id="faq">
@@ -143,11 +191,15 @@
     </details>
     <details>
       <summary>What languages does it support?</summary>
-      <p>English for now.</p>
+      <p>Pick one in Sori's <b>Language</b> menu: English, Chinese (Mandarin), Hindi, Spanish, French, Arabic, Bengali, Portuguese, Russian, Urdu, Indonesian, German, Japanese, Marathi, Telugu, Turkish, Tamil, Vietnamese, Korean or Italian. <b>Auto-detect</b> handles about 100 languages if you switch between them. The first time you choose a language other than English, Sori downloads its multilingual speech model (about 500 MB).</p>
     </details>
     <details>
       <summary>What's the optional AI cleanup?</summary>
-      <p>Basic cleanup is always on and free. For smarter grammar fixes you can run a free local AI model with <a href="https://ollama.com">Ollama</a>, or paste your own Claude API key in Sori's menu. With the Claude option, only the text (never your audio) is sent to Anthropic, under your own account.</p>
+      <p>Basic cleanup is always on and free. For smarter grammar fixes, choose <b>Cleanup: built-in AI</b> in Sori's menu: a small AI model runs inside Sori on your own computer, free and offline, with nothing else to install (it downloads once, about 1 GB). Or paste your own Claude API key in Sori's menu for the sharpest rewrite. With the Claude option, only the text (never your audio) is sent to Anthropic, under your own account.</p>
+    </details>
+    <details>
+      <summary>How does Sori Pro work?</summary>
+      <p>Buy a plan above and your licence key arrives by email. In Sori's menu choose <b>Enter Pro licence key...</b> and paste it. To move Pro to another computer, choose <b>Remove Pro licence</b> on the old one first. Pro checks in with the licence server every few days and keeps working offline for up to 30 days.</p>
     </details>
     <details>
       <summary>How do I uninstall?</summary>
@@ -160,5 +212,18 @@
     <span><a href="https://github.com/yolee222/sori-download/releases">All versions</a></span>
   </footer>
 </div>
+<script>
+  // Lemon Squeezy checkout links for the three Pro plans. Paste each product's "Share" link here.
+  // A plan without a link shows "Coming soon".
+  const CHECKOUT = {
+    monthly: "",
+    yearly: "",
+    lifetime: "",
+  };
+  document.querySelectorAll("a.buy").forEach(function (a) {
+    const url = CHECKOUT[a.dataset.plan];
+    if (url) { a.href = url; } else { a.classList.add("soon"); a.textContent = "Coming soon"; a.removeAttribute("href"); }
+  });
+</script>
 </body>
 </html>
